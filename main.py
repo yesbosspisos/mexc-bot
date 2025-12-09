@@ -102,7 +102,23 @@ def on_error(ws, error):
 def on_close(ws, close_status_code, close_msg):
     print("❌ Socket закрито. Перепідключення через 5 сек...")
     time.sleep(5)
-    start_socket()
+    def start_socket():
+    ws = websocket.WebSocketApp(
+        WS_URL,
+        on_open=on_open,
+        on_message=on_message,
+        on_error=on_error,
+        on_close=on_close
+    )
+
+    ws.run_forever(
+        ping_interval=20,
+        ping_timeout=10,
+        http_proxy_host=None,
+        http_proxy_port=None,
+        proxy_type=None
+    )
+
 
 def start_socket():
     ws = websocket.WebSocketApp(
