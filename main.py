@@ -119,7 +119,7 @@ def on_close(ws, close_status_code, close_msg):
 # ▶️ ЗАПУСК SOCKET (БЕЗ ПРОКСІ)
 # =========================
 def start_socket():
-    ws = websocket.WebSocketApp(
+    ws = websocket.WebSocketApp("wss://api.telegram.org/....")
         WS_URL,
         on_open=on_open,
         on_message=on_message,
